@@ -1,5 +1,4 @@
 import requests
-from random import choice
 
 base_url = "http://localhost:5585"
 

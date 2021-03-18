@@ -1,8 +1,9 @@
 import pytest
 import requests
 from jsonschema import Draft3Validator
+from common import base_url
 
-base_url = "http://localhost:5585"
+
 schema = {
     "type": "array",
     "items": {

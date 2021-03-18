@@ -1,18 +1,10 @@
 from random import sample
 import pytest
 import requests
+from common import get_device_addresses, base_url
 
-base_url = "http://localhost:5585"
 method = "PATCH"
 exp = 2
-
-
-def get_device_addresses():
-    body = requests.get(base_url + "/devices").json()
-    arr = []
-    for i in range(0, len(body)):
-        arr.append(body[i]["address"])
-    return arr
 
 
 @pytest.mark.parametrize("freq1", sample([1, 2, 5, 10, 20, 50, 100, 200, 500], exp))

@@ -1,6 +1,5 @@
 import requests
-
-base_url = "http://localhost:5585"
+from common import base_url
 
 
 def test_not_found_endpoint():

@@ -28,3 +28,19 @@ def test_error_bad_request(address, freq_val, freq_type, duty_val, duty_type):
 def test_error_method_not_allowed():
     response = requests.request(not_allowed_method, url=base_url + "/devices")
     assert response.status_code == 405
+
+
+@pytest.mark.parametrize("freq_val", [choice([1, 2, 5, 10, 20, 50, 100, 200, 500])])
+@pytest.mark.parametrize("freq_type", [choice(["freq1", "freq2"])])
+@pytest.mark.parametrize("duty_val", [choice(list(range(0, 101)))])
+@pytest.mark.parametrize("duty_type", [choice(["duty1", "duty2"])])
+@pytest.mark.parametrize("address", [choice([701, 777, "e213"])])
+def test_error_not_found_device(address, freq_val, freq_type, duty_val, duty_type):
+    duty = ""
+    freq = ""
+    if duty_type != "":
+        duty = "&" + duty_type + "=" + str(duty_val)
+    if freq_type != "":
+        freq = "&" + freq_type + "=" + str(freq_val)
+    response = requests.request(method, url=base_url + "/devices?address=" + address + duty + freq)
+    assert response.status_code == 400, "Response text - " + response.text

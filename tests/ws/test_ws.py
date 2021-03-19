@@ -6,4 +6,4 @@ import websockets
 def create_ws_session():
     pass
 
-# TODO
+# TODO - create WS session, work with WS

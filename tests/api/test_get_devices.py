@@ -1,9 +1,9 @@
 import pytest
-import requests
 from jsonschema import Draft3Validator
-from common import base_url
+from common import get_devices
 
 
+count_devices = 5
 schema = {
     "type": "array",
     "items": {
@@ -42,10 +42,6 @@ schema = {
 }
 
 
-def get_devices():
-    return requests.get(base_url + "/devices")
-
-
 def test_status():
     assert get_devices().status_code == 200
 
@@ -54,8 +50,7 @@ def test_response_headers():
     assert get_devices().headers["Content-Type"] == "application/json"
 
 
-@pytest.mark.parametrize("count_devices", [5])
-def test_body_count_elements(count_devices):
+def test_body_count_elements():
     body = get_devices().json()
     assert len(body) == count_devices
 

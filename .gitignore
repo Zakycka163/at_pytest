@@ -1,2 +1,5 @@
 .idea/
 .pytest_cache
+
+# no pycache files
+*.pyc

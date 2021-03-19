@@ -1,9 +1,6 @@
 import pytest
 import requests
-from common import get_device_addresses, base_url
-
-
-reports = [100, 200, 300, 400]
+from common import get_device_addresses, base_url, reports
 
 
 @pytest.mark.parametrize("rep_id", reports)
@@ -11,3 +8,4 @@ reports = [100, 200, 300, 400]
 def test_get_all_reports(rep_id, address):
     response = requests.get(base_url + "/report?address=" + str(address) + "&repId=" + str(rep_id))
     assert response.status_code == 200
+    # TODO - validate report

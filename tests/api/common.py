@@ -2,6 +2,7 @@ import requests
 
 
 base_url = "http://localhost:5585"
+reports = [100, 200, 300, 400]
 
 
 def get_device_addresses():
